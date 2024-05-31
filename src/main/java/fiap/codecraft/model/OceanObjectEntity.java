@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "TB_OBJETO_OCEANO")
-public class OceanObject {
+public class OceanObjectEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_ID_OBJETO_OCEANO")
@@ -18,18 +18,18 @@ public class OceanObject {
     @Column(name = "peso_objeto")
     private double objectWeight;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, targetEntity = OceanData.class)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, targetEntity = OceanDataEntity.class)
     @JoinColumn(name = "dado_oceano_id")
-    private OceanData oceanData;
+    private OceanDataEntity oceanData;
 
-    public OceanObject() {
+    public OceanObjectEntity() {
     }
 
-    public OceanObject(Integer id, String objectType, double objectWeight, OceanData oceanData) {
+    public OceanObjectEntity(Integer id, String objectType, double objectWeight, OceanDataEntity oceanDataEntity) {
         this.id = id;
         this.objectType = objectType;
         this.objectWeight = objectWeight;
-        this.oceanData = oceanData;
+        this.oceanData = oceanDataEntity;
     }
 
     public Integer getId() {
@@ -56,11 +56,11 @@ public class OceanObject {
         this.objectWeight = objectWeight;
     }
 
-    public OceanData getOceanData() {
+    public OceanDataEntity getOceanData() {
         return oceanData;
     }
 
-    public void setOceanData(OceanData oceanData) {
-        this.oceanData = oceanData;
+    public void setOceanData(OceanDataEntity oceanDataEntity) {
+        this.oceanData = oceanDataEntity;
     }
 }
