@@ -2,7 +2,7 @@ package fiap.codecraft.controller;
 
 import fiap.codecraft.DTO.request.OceanDataCreateDTORequest;
 import fiap.codecraft.DTO.response.OceanDataDTOResponse;
-import fiap.codecraft.model.OceanData;
+import fiap.codecraft.model.OceanDataEntity;
 import fiap.codecraft.service.OceanDataService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,15 +22,15 @@ public class OceanDataController {
 
     @PostMapping
     public ResponseEntity<OceanDataDTOResponse> createOceanData(@RequestBody OceanDataCreateDTORequest request) {
-        OceanData oceanData = oceanDataService.save(request);
-        return ResponseEntity.status(HttpStatus.CREATED).body(new OceanDataDTOResponse(oceanData));
+        OceanDataEntity oceanDataEntity = oceanDataService.save(request);
+        return ResponseEntity.status(HttpStatus.CREATED).body(new OceanDataDTOResponse(oceanDataEntity));
     }
 
     @GetMapping
     public ResponseEntity<List<OceanDataDTOResponse>> getOceanData(){
-        List<OceanData> oceanDataList = oceanDataService.getAllOceanData();
+        List<OceanDataEntity> oceanDataEntityList = oceanDataService.getAllOceanData();
 
-        List<OceanDataDTOResponse> responseList = oceanDataList.stream()
+        List<OceanDataDTOResponse> responseList = oceanDataEntityList.stream()
                 .map(OceanDataDTOResponse::new)
                 .toList();
 

@@ -1,6 +1,6 @@
 package fiap.codecraft.DTO.response;
 
-import fiap.codecraft.model.OceanData;
+import fiap.codecraft.model.OceanDataEntity;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -15,14 +15,14 @@ public record OceanDataDTOResponse(
         List<OceanObjectDTOResponse> oceanObjects
 ){
 
-    public OceanDataDTOResponse(OceanData oceanData) {
+    public OceanDataDTOResponse(OceanDataEntity oceanDataEntity) {
         this(
-                oceanData.getId(),
-                oceanData.getOceanType(),
-                oceanData.getRecordDate(),
-                oceanData.getWaterTemperature(),
-                oceanData.getWaterPollutionLevel(),
-                oceanData.getOceanObjects()
+                oceanDataEntity.getId(),
+                oceanDataEntity.getOceanType(),
+                oceanDataEntity.getRecordDate(),
+                oceanDataEntity.getWaterTemperature(),
+                oceanDataEntity.getWaterPollutionLevel(),
+                oceanDataEntity.getOceanObjects()
                         .stream()
                         .map(e -> new OceanObjectDTOResponse(
                                 e.getId(),

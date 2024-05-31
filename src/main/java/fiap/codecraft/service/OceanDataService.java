@@ -1,8 +1,8 @@
 package fiap.codecraft.service;
 
 import fiap.codecraft.DTO.request.OceanDataCreateDTORequest;
-import fiap.codecraft.model.OceanData;
-import fiap.codecraft.model.OceanObject;
+import fiap.codecraft.model.OceanDataEntity;
+import fiap.codecraft.model.OceanObjectEntity;
 import fiap.codecraft.repository.OceanDataRepository;
 import org.springframework.stereotype.Service;
 
@@ -17,26 +17,26 @@ public class OceanDataService {
         this.oceanDataRepository = oceanDataRepository;
     }
 
-    public OceanData save(OceanDataCreateDTORequest oceanDataCreateDTORequest) {
+    public OceanDataEntity save(OceanDataCreateDTORequest oceanDataCreateDTORequest) {
 
-        List<OceanObject> oceanObjects = oceanDataCreateDTORequest.oceanObjects()
+        List<OceanObjectEntity> oceanObjectEntities = oceanDataCreateDTORequest.oceanObjects()
                 .stream()
-                .map(e -> new OceanObject(null, e.objectType(), e.objectWeight(), null))
+                .map(e -> new OceanObjectEntity(null, e.objectType(), e.objectWeight(), null))
                 .toList();
 
-        OceanData oceanData = new OceanData(null, oceanDataCreateDTORequest.oceanType(),
+        OceanDataEntity oceanDataEntity = new OceanDataEntity(null, oceanDataCreateDTORequest.oceanType(),
                 oceanDataCreateDTORequest.recordDate(),
                 oceanDataCreateDTORequest.waterTemperature(),
                 oceanDataCreateDTORequest.waterPollutionLevel(),
-                oceanObjects
+                oceanObjectEntities
         );
 
-        oceanData.getOceanObjects().forEach(e -> e.setOceanData(oceanData));
+        oceanDataEntity.getOceanObjects().forEach(e -> e.setOceanData(oceanDataEntity));
 
-        return oceanDataRepository.save(oceanData);
+        return oceanDataRepository.save(oceanDataEntity);
     }
 
-    public List<OceanData> getAllOceanData(){
+    public List<OceanDataEntity> getAllOceanData(){
         return oceanDataRepository.findAll();
     }
 

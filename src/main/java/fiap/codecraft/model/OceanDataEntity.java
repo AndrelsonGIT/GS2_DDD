@@ -7,7 +7,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "TB_DADO_OCEANO")
-public class OceanData {
+public class OceanDataEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_ID_DADO_OCEANO")
@@ -28,18 +28,18 @@ public class OceanData {
     private double waterPollutionLevel;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "oceanData")
-    private List<OceanObject> oceanObjects;
+    private List<OceanObjectEntity> oceanObjectEntities;
 
-    public OceanData() {
+    public OceanDataEntity() {
     }
 
-    public OceanData(Integer id, String oceanType, LocalDateTime recordDate, double waterTemperature, double waterPollutionLevel, List<OceanObject> oceanObjects) {
+    public OceanDataEntity(Integer id, String oceanType, LocalDateTime recordDate, double waterTemperature, double waterPollutionLevel, List<OceanObjectEntity> oceanObjectEntities) {
         this.id = id;
         this.oceanType = oceanType;
         this.recordDate = recordDate;
         this.waterTemperature = waterTemperature;
         this.waterPollutionLevel = waterPollutionLevel;
-        this.oceanObjects = oceanObjects;
+        this.oceanObjectEntities = oceanObjectEntities;
     }
 
     public Integer getId() {
@@ -82,11 +82,11 @@ public class OceanData {
         this.waterPollutionLevel = waterPollutionLevel;
     }
 
-    public List<OceanObject> getOceanObjects() {
-        return oceanObjects;
+    public List<OceanObjectEntity> getOceanObjects() {
+        return oceanObjectEntities;
     }
 
-    public void setOceanObjects(List<OceanObject> oceanObject) {
-        this.oceanObjects = oceanObject;
+    public void setOceanObjects(List<OceanObjectEntity> oceanObjectEntity) {
+        this.oceanObjectEntities = oceanObjectEntity;
     }
 }
