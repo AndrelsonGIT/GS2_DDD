@@ -5,6 +5,8 @@ import fiap.codecraft.model.feedback.FeedbackEntity;
 import fiap.codecraft.repository.FeedbackRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class FeedbackService {
 
@@ -19,5 +21,9 @@ public class FeedbackService {
                 null, feedbackToBeCreated.category(), feedbackToBeCreated.text(), feedbackToBeCreated.grade());
 
         return feedbackRepository.save(feedbackEntity);
+    }
+
+    public List<FeedbackEntity> getAll(){
+        return feedbackRepository.findAll();
     }
 }

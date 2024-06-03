@@ -1,9 +1,11 @@
-package fiap.codecraft.exceptionHandler.error;
+package fiap.codecraft.exception.exceptionHandler.error;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum ErrorType {
-    INVALID_FIELD("INVALID_FIELD");
+    INVALID_FIELD("INVALID_FIELD"),
+
+    INTERNAL_ERROR("INTERNAL_ERROR");
 
     private final String errorType;
 

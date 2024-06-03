@@ -5,10 +5,11 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.databind.annotation.JsonAppend;
 
 public enum FeedbackCategory {
-    NAVIGATION("ChatBot"),
+    NAVIGATION("Navegacao"),
 
-    WEB_PLATFORM("Plataforma Web");
+    WEB_PLATFORM("Plataforma Web"),
 
+    OTHER("Other");
 
     private final String feedbackString;
 
