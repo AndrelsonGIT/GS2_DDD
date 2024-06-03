@@ -1,4 +1,4 @@
-package fiap.codecraft.service;
+package fiap.codecraft.service.Token;
 
 public interface TokenGenerator {
 

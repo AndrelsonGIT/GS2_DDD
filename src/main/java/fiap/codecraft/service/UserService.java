@@ -5,6 +5,7 @@ import fiap.codecraft.exception.UserNotFoundException;
 import fiap.codecraft.model.UserAddressEntity;
 import fiap.codecraft.model.UserEntity;
 import fiap.codecraft.repository.UserRepository;
+import fiap.codecraft.service.Token.UserTokenSerivce;
 import fiap.codecraft.service.address.AddressService;
 import fiap.codecraft.service.validator.UserCreationValidator;
 import org.springframework.stereotype.Service;

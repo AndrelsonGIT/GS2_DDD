@@ -1,4 +1,4 @@
-package fiap.codecraft.service;
+package fiap.codecraft.service.Token;
 
 import fiap.codecraft.model.UserEntity;
 import fiap.codecraft.model.UserTokenEntity;

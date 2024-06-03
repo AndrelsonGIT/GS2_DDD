@@ -1,4 +1,4 @@
-package fiap.codecraft.service;
+package fiap.codecraft.service.Token;
 
 
 import org.apache.commons.codec.binary.Base64;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import java.security.SecureRandom;
 
 @Component
-public class TokenGeneratorImpl implements TokenGenerator{
+public class TokenGeneratorImpl implements TokenGenerator {
 
     @Override
     public String generateToken(String inputData) {
