@@ -1,6 +1,7 @@
 package fiap.codecraft.controller;
 
 import fiap.codecraft.DTO.request.UserCreateDTORequest;
+import fiap.codecraft.DTO.request.UserEditEmailDTORequest;
 import fiap.codecraft.DTO.response.UserCreateDTOResponse;
 import fiap.codecraft.model.UserEntity;
 import fiap.codecraft.service.UserService;
@@ -34,6 +35,12 @@ public class UserController {
                 );
 
         return ResponseEntity.ok().body(response);
+    }
+
+    @PatchMapping("edit/{userEmail}")
+    public ResponseEntity editEmailUser(@RequestBody UserEditEmailDTORequest request, @PathVariable("userEmail") String currentUserEmail){
+        userService.editPassword(request.newPassword(), currentUserEmail);
+        return ResponseEntity.noContent().build();
     }
 
 

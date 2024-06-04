@@ -58,4 +58,10 @@ public class UserService {
         return optionalUserEntity.get();
     }
 
+    public UserEntity editPassword(String newPassword, String oldEmail) {
+        UserEntity userEntity = findByEmail(oldEmail);
+        userEntity.setPassword(newPassword);
+        return userRepository.save(userEntity);
+    }
+
 }
