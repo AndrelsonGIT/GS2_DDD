@@ -12,10 +12,10 @@ import java.io.IOException;
 @Service
 public class ViaCepService implements CepService {
 
+    private APIRequestCaller apiCaller;
 
     @Override
     public AddressResponse findAddress(String cep) throws AddressNotFoundException {
-        APIRequestCaller apiCaller = new APIRequestCaller();
 
         String jsonResponse;
         try {

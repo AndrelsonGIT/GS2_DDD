@@ -14,20 +14,19 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UserService {
+public class UserService implements Subject{
 
     private UserRepository userRepository;
 
     private AddressService addressService;
 
-    private UserTokenSerivce userTokenService;
-
     private List<UserCreationValidator> validators;
 
-    public UserService(UserRepository userRepository, AddressService addressService, UserTokenSerivce userTokenService, List<UserCreationValidator> validators) {
+    private List<Observer> observers;
+
+    public UserService(UserRepository userRepository, AddressService addressService, List<UserCreationValidator> validators) {
         this.userRepository = userRepository;
         this.addressService = addressService;
-        this.userTokenService = userTokenService;
         this.validators = validators;
     }
 
@@ -43,7 +42,6 @@ public class UserService {
                 address);
 
         userEntity = userRepository.save(userEntity);
-        userTokenService.createToken(userEntity);
 
         return userEntity;
     }
@@ -64,4 +62,8 @@ public class UserService {
         return userRepository.save(userEntity);
     }
 
+    @Override
+    public void notifyObservers(UserEntity user) {
+        observers.forEach((e) -> e.update(user));
+    }
 }

@@ -3,10 +3,11 @@ package fiap.codecraft.service.Token;
 import fiap.codecraft.model.UserEntity;
 import fiap.codecraft.model.UserTokenEntity;
 import fiap.codecraft.repository.TokenRepository;
+import fiap.codecraft.service.Observer;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserTokenSerivce {
+public class UserTokenSerivce implements Observer {
 
     private TokenRepository tokenRepository;
 
@@ -15,6 +16,11 @@ public class UserTokenSerivce {
     public UserTokenSerivce(TokenRepository tokenRepository, TokenGenerator tokenGenerator) {
         this.tokenRepository = tokenRepository;
         this.tokenGenerator = tokenGenerator;
+    }
+
+    @Override
+    public void update(UserEntity user) {
+        createToken(user);
     }
 
     public UserTokenEntity createToken(UserEntity user){
