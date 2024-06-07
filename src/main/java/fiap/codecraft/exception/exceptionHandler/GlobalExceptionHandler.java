@@ -47,13 +47,13 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
                 ErrorType.INVALID_FIELD));
     }
 
-//    @ExceptionHandler(RuntimeException.class)
-//    public ResponseEntity<ErrorResponse> handleException(RuntimeException ex) {
-//        System.out.println(ex.getMessage());
-//        ex.getStackTrace();
-//        System.out.println(ex.getLocalizedMessage());
-//        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-//                .body(new ErrorResponse("Erro interno do servidor ao processar a requisição",
-//                        ErrorType.INTERNAL_ERROR));
-//    }
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<ErrorResponse> handleException(RuntimeException ex) {
+        System.out.println(ex.getMessage());
+        ex.getStackTrace();
+        System.out.println(ex.getLocalizedMessage());
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(new ErrorResponse("Erro interno do servidor ao processar a requisição",
+                        ErrorType.INTERNAL_ERROR));
+    }
 }

@@ -14,6 +14,10 @@ public class ViaCepService implements CepService {
 
     private APIRequestCaller apiCaller;
 
+    public ViaCepService(APIRequestCaller apiCaller) {
+        this.apiCaller = apiCaller;
+    }
+
     @Override
     public AddressResponse findAddress(String cep) throws AddressNotFoundException {
 

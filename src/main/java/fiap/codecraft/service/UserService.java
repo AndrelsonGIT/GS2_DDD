@@ -5,7 +5,6 @@ import fiap.codecraft.exception.UserNotFoundException;
 import fiap.codecraft.model.UserAddressEntity;
 import fiap.codecraft.model.UserEntity;
 import fiap.codecraft.repository.UserRepository;
-import fiap.codecraft.service.Token.UserTokenSerivce;
 import fiap.codecraft.service.address.AddressService;
 import fiap.codecraft.service.validator.UserCreationValidator;
 import org.springframework.stereotype.Service;
@@ -24,10 +23,11 @@ public class UserService implements Subject{
 
     private List<Observer> observers;
 
-    public UserService(UserRepository userRepository, AddressService addressService, List<UserCreationValidator> validators) {
+    public UserService(UserRepository userRepository, AddressService addressService, List<UserCreationValidator> validators, List<Observer> observers) {
         this.userRepository = userRepository;
         this.addressService = addressService;
         this.validators = validators;
+        this.observers = observers;
     }
 
     public UserEntity createUser(UserCreateDTORequest userRequest) {
@@ -42,6 +42,8 @@ public class UserService implements Subject{
                 address);
 
         userEntity = userRepository.save(userEntity);
+
+        notifyObservers(userEntity);
 
         return userEntity;
     }

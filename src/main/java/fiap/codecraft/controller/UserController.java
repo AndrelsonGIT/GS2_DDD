@@ -38,11 +38,9 @@ public class UserController {
     }
 
     @PatchMapping("edit/{userEmail}")
-    public ResponseEntity editEmailUser(@RequestBody UserEditEmailDTORequest request, @PathVariable("userEmail") String currentUserEmail){
+    public ResponseEntity editUserPassword(@RequestBody UserEditEmailDTORequest request, @PathVariable("userEmail") String currentUserEmail) {
         userService.editPassword(request.newPassword(), currentUserEmail);
         return ResponseEntity.noContent().build();
     }
-
-
 
 }
